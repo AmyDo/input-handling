@@ -25,4 +25,8 @@ describe('testing isTitle', () => {
   test('evil Win newline',  () => { expect(v.isTitle("a\r\nb")).toBe(false) });
   test('evil form feed',    () => { expect(v.isTitle("a\fb")).toBe(false) });
   test('evil vtab',         () => { expect(v.isTitle("a\vb")).toBe(false) });
+  test('german allowed',    () => { expect(v.isTitle("Ich weiß nichts")).toBe(true) });
+  test('ñ composed',        () => { expect(v.isTitle("ma\u00F1ana")).toBe(true) });
+  test('ñ decomposed',      () => { expect(v.isTitle("ma\u006E\u0303ana")).toBe(true) });
+  test('arabic allowed',     () => { expect(v.isTitle("مرحبا بالعالم")).toBe(true) });
 });

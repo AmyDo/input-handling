@@ -22,11 +22,7 @@ let new_str= str.trim()
 if (new_str!==str){
 return false;
 }
-const reg_str= "^[-A-Za-z'"+'" 0-9]+$';
-
-//console.log("=====>",reg_str)
-const re = new RegExp(reg_str, 'g');
- if (re.test(new_str) ==true){
+ if (/^[-\w'" 0-9\p{L}]+$/gu.test(new_str.normalize('NFC')) ==true){
     return block_titles.some((title) => { return new_str.toLowerCase()!==title.toLowerCase();});
  }
  return false;
