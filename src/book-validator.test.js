@@ -16,4 +16,13 @@ describe('testing isTitle', () => {
   test('single letter',     () => { expect(v.isTitle('A')).toBe(true) });
   test('simple title',      () => { expect(v.isTitle('War and Peace')).toBe(true) });
   test('Block list',        () => { expect(v.isTitle("Boaty McBoatface")).toBe(false) });
+  test('Block, mixed case', () => { expect(v.isTitle("bOaTy McBoAtFaCe")).toBe(false) });
+  test('Anchor drop!',      () => { expect(v.isTitle("ok💩")).toBe(false) });
+  test('Leading spaces',    () => { expect(v.isTitle('   a')).toBe(false) });
+  test('Trailing spaces',   () => { expect(v.isTitle('a   ')).toBe(false) });
+  test('evil tab',          () => { expect(v.isTitle("a\tb")).toBe(false) });
+  test('evil newline',      () => { expect(v.isTitle("a\nb")).toBe(false) });
+  test('evil Win newline',  () => { expect(v.isTitle("a\r\nb")).toBe(false) });
+  test('evil form feed',    () => { expect(v.isTitle("a\fb")).toBe(false) });
+  test('evil vtab',         () => { expect(v.isTitle("a\vb")).toBe(false) });
 });

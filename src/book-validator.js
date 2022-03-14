@@ -1,4 +1,7 @@
 const block_titles = ["Boaty McBoatface"];
+
+
+
 // Sanity check method to make sure you have your environment up and running.
 function sum(a, b){
   return a + b;
@@ -15,10 +18,18 @@ function sum(a, b){
     - No newlines or tabs
 */
 function isTitle(str){
+let new_str= str.trim()
+if (new_str!==str){
+return false;
+}
+const reg_str= "^[-A-Za-z'"+'" 0-9]+$';
 
-var result= block_titles.some((title) => { return str.toLowerCase()!==title.toLowerCase();});
-
- return result;
+//console.log("=====>",reg_str)
+const re = new RegExp(reg_str, 'g');
+ if (re.test(new_str) ==true){
+    return block_titles.some((title) => { return new_str.toLowerCase()!==title.toLowerCase();});
+ }
+ return false;
 }
 
 
