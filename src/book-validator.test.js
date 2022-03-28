@@ -54,12 +54,44 @@ describe('isSameTitle', () => {
   test('german ẞ and ss',     () => { expect(v.isSameTitle("ẞ", "\u1E9E")).toBe(true) });
 
   test('bidi compat',   () => { expect(v.isSameTitle("abc\u202Edef", "abcdef")).toBe(true) });
-
-
-
-
   test('zalgo',   () => { expect(v.isSameTitle("zalgo", "z̸̢̡̨̢̢̨̧̨̨̧̧̧̢̡̢̢̧̨̨̨̢̧̡̢̛̛̛̛̘͎̫̥͙̙̫͈̯̱͍̪͇̻̥̟̥̮̞͈̟̮̼̙̮͈̫͍̠̟̖̱̬̝̩̲̪͔̝̪̥͕̬̺̠̝̖̥͈̲̱̪̣͚̫̩̞̼̠͔̲͉͉̳͉̰͎̖̠͕̩̟͉̲̣̥̬͖͚̫̲̣̟̱̜̰͉̥͎̱̰͉̫͉̳̯͖͓̣͖̖̤͙̙̹͍̪̬̱̭̤̩̠̝͖̞͙̳̠̗̳͈͚̭͖̩̯̪̼͙̮͇̟̘̹̗̜͓͔̬̫͕̖͙̖̩̹̺͎̮͙̗͇̦͕̞̞̪̩̙̞̥͇͓̼̹̭̟̭̻̬͈͍̥͚̖̯̟͔̹̮̫̳̘̪̗̱̣̟̖̯͉̞̱̗̤̟͓͓̥̥͈͈̯̖͕̝͔͚̺͉̞̫̰̥̮͔̣̝̞̬͔̼̞̯͇̖̪̘͕̪̠̀̓̔̈́͑̀̄̿̎̉́̏͑̀̄͛̿̾̈́͊͐͐͗̾̍́̄̅́̒̈́̆̀̾̌͌́̈́́̄̀͒͑́̾̃͊̃͛̍̓̒̾͆̏̈́̾͂̌̊͆̊̇̆͗͛̓͑͐͌̈́̌̓̓̇̓̅͌̃̄̀͐̃̓͐̉̐͊͆̓̈͗̈̎̽̉͌́̿́͗̃̈́͒̃͛̿̆̅̅͐͆́̆̀́̎́͐̽̐̈́̀̀͛̽͋̈̏͗̎̑͑̈́͑̾͒̀̚̚̚͘͘̕͘̕͘͜͜͜͜͜͜͜͝͠͝͝͠͠͝͝͝͝͠͝͠͝͝͝͝͠ã̵̧̢̨̧̢̨̨̨̨̛̛̛̛̛̛̝̞̟͕̮̱̼͕͖͚̭͓̲̹͇̼̦̟̠̭̖̤͙͉͇̣̮͓͔͖͕̙̤̗͇̩͈̙͈͎̭̣̼͇̙̼̬͓͖̗͙̪̟̪͚̙̗̜͎͙̞̘͖̗̦͙͎̻̖͉͔̣̩̹̟͈͙͎̲͚͉͕̃̏͂̃͌͑̆̅̎̃̒̈̓͂̃̊͑͆̏̉̋̔͊͋͛̎̂́̎͂̒̋̂̃͛̓̈́̆̾̓̈́̾̎́̄̿̈́͌̈́̓̍̈́̌̍͗̂̀̏́̍̐̉̏̊̆͑̊̄̅́͆̈́͊̈́͛͆́̽̅̈́̈̂̌̍̔̔̌̋̑̈́̓́̋̑́́̏̈́̾̑̽̔̔́̈́̍͛̿̆̌̋̃̌̂͌̀̏͒̓̈́̉̎́̒́̀̀̔́̉̋̀̀̽̈́̿̓̀̒͂̾̐̇̓̈́͆͆̀͆̅͒̌̂́͂̓̍̏͐̃̒̀̂̿͗̍̈́͌̇̇̑̇͋̿̔̑͂̅̓̀̊̊͐̽́́̓̀̐̉͗̀͗̔̀̍̉̉͑̋̎̃͋̏̉́̄͗͑̑̉͋̽͒͂̈͑́̎̄̍̾̈́͒͂̔̕̕̚̕͘͘̕̚̕̚̚͜͜͜͜͜͝͝͝͠͝͝͝͝͝͝͝͝͠͠͠͝͝͠͝͝͝͝͠͝͠͝ͅl̴̢̧̡̨̢̨̧̨̨̡̨̧̡̨̢̨̧̨̡̛̛̞̺̞̘̣͍͕͕̗̞̞̼̮̻̰͔̺̘͉͖͚̫̞̯͈͉̣̲̘͎̼̱̺̞̮̘̹͙̬̪͓̝̭͖̳̱͖͈͚̯͔̹̩̳̩͍̣̹͔̹̺̭̖̜͙̻̰̺̝̦̟̯̪̞͉̝̩̩̮̜̫̼̗͙͖͚̲͈͙̱̰̥̠͎̬̮͓̬͔̪͕̯͍͙̼͙͎̣̖̥̪͇͍͕͎̥̫̙͔̖̮̬͔̟͈̯͙̺̠͔̦̱̩̱̝͖̺̳̜̪̳͓̮͔͉̰̻̬̖͚͕̪̼̙͇̼̬͚̳͎̺̼̠̜̩̟̩̘̳̱̝̫̲̖̙͉͕͇̝͚̺̫̜̜̣̳̺͇͍̬̙̼̗̲͕̜̘͚̤̥̺͎͐͒̆̉̏̓̋̏̀́͑́̌́͑͂̎̃̈͛͐́̀̂͒̐̍̀̈́̒̓̊͒̈́̈́̊̍͊̿̾̊̾̎̋̓̇̃͐͆̔͑̓͗̏̈́̆͌͂̊̑͗̀̔̍̉͗̎̊͗̈́̽̉͆̒̓̾̈̽̑́̂̒̌̀̈́͗̏̎̋̍̐̓̈͗̆̆́̃͐̅͊̈͋͐͊̀̃͑͑́̈̐̄͗̈̓̿̇̉̈́̏̀̌̓́̈͐̅͐̃̽͊̍̈̉̆̈͋͐̐̀̈́̉̃̔͆́͆́̎̀͊̌̄̎̓͋̈́͐̄̽̕͘̕̚̚̚̕̚͘̕͘͘̕͘̕̚͘͘̚͜͜͜͜͝͝͝͠͠͠͝ͅͅͅͅͅͅg̶̢̡̡̢̧̧̧̨̨̡̢̧̡̨̨̢̧̨̢̨̧̧̨̢̡̢̢̨̛̛̛̰͔̩̠̲̬̗͉̥͓͚̟̮̣̠̞̪̞̗̘̥̙̥͖͕̘̬̖̩̘̰̤̫̗̲̬̘̠̠͓̘̖̯͉̦̝̣̺͎̥̟̻̺̱̝͙͍̙͚͓̦̦̩̪̥̜͎̦̘̝̖͔͔̙̠̖̮̪̼͔͈͖͎͎̳͈͎̗̹̪̫͕̦̩̬̤͙̙͇͙̱̫̭͖̤͚̠̖̮̭̞͖̫̯͖̰̮̟͎̟̠͉̙̞̣̟̺̲͎̹̲͉̜̝͖͎̻̞̣̮͚͓͍̲͓̣̗̱͉̗͓̬͎̹͈̣̝͙̝̙̮̦͓̭̯͓̦̻͇̤̣̥̘̠͈͈͕̬̘͕͙̙̼̣̹̮̞͚̦̬̟͖͓̞̳͚̗̠̩̰͍̤̩̙̞͉̼̯̹̫̤͐͆͗̍̓̈́͊̋̈́͊͒͛̈́̓̇͐͆̄̀̑͒̂̓̃̿́͒̈́̋͐̈́̄̒͌͐̿̎͋̌͆͛͒̆͛̔̂̈̈́̍̿̑̃̽͊́̂͆͌͑̈́̇́̉̄̉͘͘͘͘̕͘̕̚͜͜͜͝͠͠͠͠͝͠͝͝͝ͅͅͅơ̸̧̢̧̡̨̨̢̡̨̢̢̢̧͔̦̭̘̱̳̳̹̠̲̦͍͎̦͚̠͍̥͚͇̠̬̗̳̙̪̦̞̬̮̖͚̭͕͇͚͙͉̩͙̳͖͔͉̱̮̱̤͈̫̫͔̲͈̥̰̲̭͕̼͕̬̮̜͈̳͈͕̻̦̙͔͕̱̰̥̖̩̮͉͉̗̮̩͇̱͔̘̩̠̏̄͋̅̂̔͐̈́̾̏̿̈̑̊̒̽̔̕̕͘͜͜͜ͅͅͅ")).toBe(true) });
 
+});
+describe('js capture groups', () => {
+  test('p11 matches the p but gets the 11 only', () => {
+    const input = "p11";
+    let answer = "change me to a regex capture group";
+    expect('p11'.match(/p(?<page>\d+)/).groups.page).toBe("11") });
+});
 
+describe('countPages', () => {
+  test('single number',      () => { expect(v.countPages('2')).toBe(1) });
+  test('single pNumber',     () => { expect(v.countPages('p3')).toBe(1) });
+  test('simple expressions', () => { expect(v.countPages('1,3')).toBe(2) });
+  test('range',              () => { expect(v.countPages('2-4')).toBe(3) });
+  test('range w/pNum',       () => { expect(v.countPages('2-p4')).toBe(3) });
+  test('range w/ws',         () => { expect(v.countPages(' 2 -  4')).toBe(3) });
+  test('big range',          () => { expect(v.countPages('10-100')).toBe(91) });
+  test('negative range',     () => { expect(v.countPages('100-10')).toBe(91) });
+  test('multi range',        () => { expect(v.countPages('1-3,5-6,p9')).toBe(6) });
+  test('neg multi range',    () => { expect(v.countPages('9-5,1-4')).toBe(9) });
+  test('weird range split',  () => { expect(v.countPages('1-3-5')).toBe(0) });
+  test('garbage',            () => { expect(v.countPages('asdcmiuf')).toBe(0) });
+  test('unicode weirdness',  () => { expect(v.countPages("\0x00\xa2")).toBe(0) });
+  test('integer overflow',   () => {
+    const overflow = `p${Number.MAX_SAFE_INTEGER}-p0`
+    expect(v.countPages(overflow)).toBe(undefined)
+  });
+});
 
+describe('cleanPageNum', () => {
+  test('single number',        () => { expect(v.cleanPageNum('2')).toBe(2) });
+  test('single pNumber',       () => { expect(v.cleanPageNum('p3')).toBe(3) });
+  test('whitespace',           () => { expect(v.cleanPageNum(' p4\t \r\n')).toBe(4) });
+  test('two pNums',            () => { expect(v.cleanPageNum('p3p4')).toBe(undefined) });
+  test('exponents  undefined', () => { expect(v.cleanPageNum('1e7')).toBe(undefined) });
+  test('nothing usable',       () => { expect(v.cleanPageNum('abc')).toBe(undefined) });
+  test('js max number',        () => { expect(v.cleanPageNum('abc')).toBe(undefined) });
+  test('negatives undefined',  () => { expect(v.cleanPageNum('-19')).toBe(undefined) });
+  test('leading zero octal?',  () => { expect(v.cleanPageNum('p09')).toBe(9) });
 });
