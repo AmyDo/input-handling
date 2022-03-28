@@ -1,3 +1,4 @@
+
 const sanitizeHTML = require('sanitize-html');
 const block_titles = ["Boaty McBoatface"];
 
@@ -5,7 +6,9 @@ const block_titles = ["Boaty McBoatface"];
 
 // Sanity check method to make sure you have your environment up and running.
 function sum(a, b){
-  return a + b;
+   
+   return a + b;
+
 }
 /*
   Valid book titles in this situation can include:
@@ -189,30 +192,27 @@ function removeWhitespace(rawStr){
 
 
 /*
-  Utility method for testing.
-  Take dirty strings and inject them into a DOM string.
-  Then, check to see if the dirty string *itself* changed the DOM at all.
-
-  Input:
-    - dirty: a string that we don't trust
-    - n: the number of child elements we expect to get
-*/
-function expectDomChildren(dirty, n){
-  document.body.innerHTML = `
-      <span id="myspan">
-        ${v.cleanForHTML(dirty)}
-      </span>
-    `
-  expect(document.getElementById('myspan').childElementCount).toBe(n);
-}
-/*
   Given a string, return another string that is safe for embedding into HTML.
     * Use the sanitize-html library: https://www.npmjs.com/package/sanitize-html
     * Configure it to *only* allow <b> tags and <i> tags
       (Read the README to learn how to do this)
 */
 function cleanForHTML(dirty) {
-   return dirty;
+   const clean = sanitizeHTML(dirty, {
+      allowedTags: [ 'b', 'i', 'em', 'strong'],
+      allowedAttributes: {'a': [ 'href']},
+      textFilter: function(text, tagName) {
+         if (['a'].indexOf(tagName) > -1) return //Skip anchor tags
+         return text.replace(/"/g, '&quot;').replace(/'/g, '&quot;');
+       }
+
+     
+    });
+   console.log('====================')
+   console.log(clean)
+   
+   return clean
+
 }
 // Too all my JS nitpickers...
 // We are using CommonJS modules because that's what Jest currently best supports
@@ -224,6 +224,5 @@ module.exports = {
   cleanPageNum,
   isSameTitle,
   cleanForHTML,
-  expectDomChildren,
 
 };

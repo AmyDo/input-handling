@@ -97,8 +97,68 @@ describe('cleanPageNum', () => {
   test('leading zero octal?',  () => { expect(v.cleanPageNum('p09')).toBe(9) });
 });
 
+
+/*
+  Utility method for testing.
+  Take dirty strings and inject them into a DOM string.
+  Then, check to see if the dirty string *itself* changed the DOM at all.
+
+  Input:
+    - dirty: a string that we don't trust
+    - n: the number of child elements we expect to get
+*/
+function expectDomChildren(dirty, n){
+  document.body.innerHTML = `
+      <span id="myspan">
+        ${v.cleanForHTML(dirty)}
+      </span>
+    `
+  expect(document.getElementById('myspan').childElementCount).toBe(n);
+}
+
 describe ('cleanForHTML and DOM element XSS', () => {
 
   test('sanity check', () => { expectDomChildren(`Hello!`, 0) })
+  test('<script> not allowed', () => { expectDomChildren(`<script></script>`, 0) })
+  test('<b> and <i> allowed', () => {
+    expectDomChildren(`<b>Bold!</b> and <i>Italics!</i>`, 2)
+  })
+  test('<a> not allowed', () => { expectDomChildren(`<a>Non-default!</a>`, 0) })
 
+});
+
+describe ('cleanForHTML and DOM attribute XSS', () => {
+
+  test('attribute exploit WORKS when dirty', ()=>{
+    const dirty = `" onload="javascript:alert('hello!')" "`
+    document.body.innerHTML = `
+      <b id="mine" class="${dirty}">
+      </b>
+    `
+    expect(document.getElementById('mine').attributes.id).toBeDefined();     // ok fine
+    expect(document.getElementById('mine').attributes.class).toBeDefined();  // ok fine
+    expect(document.getElementById('mine').attributes.onload).toBeDefined(); // uh-oh
+  })
+  test('attribute exploit FAILS when cleaned', ()=>{
+    const dirty = `" onload="alert('hello!')" "`
+    document.body.innerHTML = `
+      <b id="mine" class="${v.cleanForHTML(dirty)}">
+      </b>
+    `
+    expect(document.getElementById('mine').attributes.id).toBeDefined();     // ok fine
+    expect(document.getElementById('mine').attributes.class).toBeDefined();  // ok fine
+    expect(document.getElementById('mine').attributes.onload).toBeUndefined(); // phew!
+  })
+
+  test('attribute exploit FAILS when cleaned, single quote edition', ()=>{
+    const dirty = `' onload='alert("hello!")' '`
+    document.body.innerHTML = `
+      <b id="mine" class='${v.cleanForHTML(dirty)}'>
+      </b>
+    `
+    expect(document.getElementById('mine').attributes.id).toBeDefined();     // ok fine
+    expect(document.getElementById('mine').attributes.class).toBeDefined();  // ok fine
+    expect(document.getElementById('mine').attributes.onload).toBeUndefined(); // phew!
+  })
+  
 });
