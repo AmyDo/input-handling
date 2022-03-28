@@ -10,7 +10,10 @@
   "scripts": {
     "test": "jest"
   },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
   "dependencies": {
-    "sanitize-html": "^2.7.0"
+    "sanitize-html": "^2.5.1"
   }
 }
