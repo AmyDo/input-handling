@@ -187,15 +187,7 @@ function removeWhitespace(rawStr){
    return new_str
 }
 
-/*
-  Given a string, return another string that is safe for embedding into HTML.
-    * Use the sanitize-html library: https://www.npmjs.com/package/sanitize-html
-    * Configure it to *only* allow <b> tags and <i> tags
-      (Read the README to learn how to do this)
-*/
-function cleanForHTML(dirty) {
-   return dirty;
-}
+
 /*
   Utility method for testing.
   Take dirty strings and inject them into a DOM string.
@@ -213,12 +205,19 @@ function expectDomChildren(dirty, n){
     `
   expect(document.getElementById('myspan').childElementCount).toBe(n);
 }
-
+/*
+  Given a string, return another string that is safe for embedding into HTML.
+    * Use the sanitize-html library: https://www.npmjs.com/package/sanitize-html
+    * Configure it to *only* allow <b> tags and <i> tags
+      (Read the README to learn how to do this)
+*/
+function cleanForHTML(dirty) {
+   return dirty;
+}
 // Too all my JS nitpickers...
 // We are using CommonJS modules because that's what Jest currently best supports
 // But, the more modern, preferred way is ES6 modules, i.e. "import/export"
 module.exports = {
-
   sum,
   isTitle,
   countPages,

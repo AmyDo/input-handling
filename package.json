@@ -10,10 +10,10 @@
   "scripts": {
     "test": "jest"
   },
-  "jest": {
-    "testEnvironment": "jsdom"
-  },
   "dependencies": {
+    "chai": "^4.3.6",
+    "expect": "^27.5.1",
+    "or": "^0.2.0",
     "sanitize-html": "^2.5.1"
   }
 }

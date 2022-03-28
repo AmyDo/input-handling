@@ -98,5 +98,7 @@ describe('cleanPageNum', () => {
 });
 
 describe ('cleanForHTML and DOM element XSS', () => {
+
   test('sanity check', () => { expectDomChildren(`Hello!`, 0) })
+
 });
