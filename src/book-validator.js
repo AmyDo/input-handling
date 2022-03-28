@@ -92,13 +92,40 @@ function isSameTitle(strA, strB){
 
 */
 function countPages(rawStr){
-
-
+   let page_counter=0;
    str_list= removeWhitespace(rawStr).split(',');
+   for(const element_str of str_list){
 
-   str_list.forEach(element => console.log(element));
+      //if contains a range '-'
+      if (element_str.match(/-/) != null){
+         sub_list= removeWhitespace(element_str).split('-');
+         if (sub_list.length !=2){
+            return 0;
+         }
 
-   return 0
+         if (cleanPageNum(sub_list[1]) == undefined || cleanPageNum(sub_list[0])==undefined){
+            return undefined
+         }
+         let start_page =cleanPageNum(sub_list[0]);
+         let end_page =cleanPageNum(sub_list[1]);
+         let num_page=0;
+         if(end_page<start_page){
+            num_page= start_page-end_page+1;
+         }else{
+            num_page= end_page- start_page+1;
+         }
+         page_counter+=num_page;
+
+      }else{
+         if (cleanPageNum(element_str)== undefined){
+            return 0
+         }
+         page_counter++;
+      }
+
+   }
+
+   return page_counter
 }
 
 /*
@@ -108,11 +135,11 @@ function countPages(rawStr){
 */
 function cleanPageNum(str){
    let new_str= removeWhitespace(str);
-   console.log("new str=========> ",new_str)
+   //console.log("new str=========> ",new_str)
    //check for negative number
    let match_negative= new_str.match(/-/);
    if ( match_negative !=null){
-      console.log('contain - chars=>undefine')
+      //console.log('contain - chars=>undefine')
 
       return undefined
    }
@@ -125,24 +152,33 @@ function cleanPageNum(str){
    let contains_chars= esc_removed_str.match(/[a-nq-z]/i);
    if(contains_chars != null){
 
-      console.log('contain uneessary chars undefine')
+      //console.log('contain uneessary chars undefine')
       return undefined
    }
    //check for p pattern
    let p_pattern= esc_removed_str.match(/^p(\d+)$/);
-   if (p_pattern !=null){
+   if (p_pattern !=null ){
+
+      if(p_pattern[1].length>15){
+         return undefined;
+      }
       let answer= parseInt(p_pattern[1], 10);
-      console.log(answer);
+
+      //console.log(answer);
       return answer;
    }
    //check for sole number
    let sole_number_pattern= esc_removed_str.match(/\d+/);
    if (sole_number_pattern !=null && esc_removed_str.match(/p/) ==null){
+
+      if(sole_number_pattern[0].length>15){
+         return undefined;
+      }
       let answer_num= parseInt(sole_number_pattern[0],10);
-      console.log(answer_num);
+      //console.log(answer_num);
       return answer_num;
    }
-   console.log('last undefined')
+   //console.log('last undefined')
    return undefined;
 }
 
