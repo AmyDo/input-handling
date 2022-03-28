@@ -1,10 +1,3 @@
-const v = require("./book-validator");
-
-// Make sure that our normal test works so our environment is all set up.
-test('SANITY CHECK: 1 + 2 = 3', () => {
-  expect(v.sum(1, 2)).toBe(3);
-});
-
 /**
  * @jest-environment jsdom
  *
@@ -12,6 +5,14 @@ test('SANITY CHECK: 1 + 2 = 3', () => {
  *
  * Jest Unit Tests for the book-validator set of functions
  */
+const v = require("./book-validator");
+
+// Make sure that our normal test works so our environment is all set up.
+test('SANITY CHECK: 1 + 2 = 3', () => {
+  expect(v.sum(1, 2)).toBe(3);
+});
+
+
 describe('testing isTitle', () => {
   test('single letter',     () => { expect(v.isTitle('A')).toBe(true) });
   test('simple title',      () => { expect(v.isTitle('War and Peace')).toBe(true) });
@@ -94,4 +95,8 @@ describe('cleanPageNum', () => {
   test('js max number',        () => { expect(v.cleanPageNum('abc')).toBe(undefined) });
   test('negatives undefined',  () => { expect(v.cleanPageNum('-19')).toBe(undefined) });
   test('leading zero octal?',  () => { expect(v.cleanPageNum('p09')).toBe(9) });
+});
+
+describe ('cleanForHTML and DOM element XSS', () => {
+  test('sanity check', () => { expectDomChildren(`Hello!`, 0) })
 });

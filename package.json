@@ -11,6 +11,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "sanitize-html": "^2.5.1"
+    "sanitize-html": "^2.7.0"
   }
 }

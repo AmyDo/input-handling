@@ -1,4 +1,4 @@
-
+const sanitizeHTML = require('sanitize-html');
 const block_titles = ["Boaty McBoatface"];
 
 
@@ -187,16 +187,44 @@ function removeWhitespace(rawStr){
    return new_str
 }
 
-function cleanForHTML(dirty) { return dirty; }
+/*
+  Given a string, return another string that is safe for embedding into HTML.
+    * Use the sanitize-html library: https://www.npmjs.com/package/sanitize-html
+    * Configure it to *only* allow <b> tags and <i> tags
+      (Read the README to learn how to do this)
+*/
+function cleanForHTML(dirty) {
+   return dirty;
+}
+/*
+  Utility method for testing.
+  Take dirty strings and inject them into a DOM string.
+  Then, check to see if the dirty string *itself* changed the DOM at all.
+
+  Input:
+    - dirty: a string that we don't trust
+    - n: the number of child elements we expect to get
+*/
+function expectDomChildren(dirty, n){
+  document.body.innerHTML = `
+      <span id="myspan">
+        ${v.cleanForHTML(dirty)}
+      </span>
+    `
+  expect(document.getElementById('myspan').childElementCount).toBe(n);
+}
 
 // Too all my JS nitpickers...
 // We are using CommonJS modules because that's what Jest currently best supports
 // But, the more modern, preferred way is ES6 modules, i.e. "import/export"
 module.exports = {
+
   sum,
   isTitle,
   countPages,
   cleanPageNum,
   isSameTitle,
   cleanForHTML,
+  expectDomChildren,
+
 };
