@@ -1,3 +1,4 @@
+
 const block_titles = ["Boaty McBoatface"];
 
 
@@ -30,7 +31,43 @@ return false;
 
 
 function cleanPageNum(rawStr){ return 0; }
-function isSameTitle(strA, strB){ return false; }
+
+/*
+  Are the two titles *effectively* the same when searching?
+
+  This function will be used as part of a search feature, so it should be
+  flexible when dealing with diacritics and ligatures.
+
+  Input: two raw strings
+  Output: true if they are "similar enough" to each other
+
+  We define two strings as the "similar enough" as:
+
+    * ignore leading and trailing whitespace
+    * same sequence of "letters", ignoring diacritics and ligatures, that is:
+      anything that is NOT a letter in the UTF-8 decomposed form is removed
+    * Ligature "\u00E6" or æ is equivalent to "ae"
+    * German character "\u1E9E" or ẞ is equivalent to "ss"
+*/
+function isSameTitle(strA, strB){
+   if(typeof(strA) != typeof(strB)){
+      return false;
+   }
+   let new_strA= strA.trim().normalize("NFD").normalize("NFKD").replaceAll(/[\u0300-\u036f]/g, "").replaceAll(/æ/g, "ae").replaceAll(/[^\x00-\x7F]/g,"");
+   let new_strB= strB.trim().normalize("NFD").normalize("NFKD").replaceAll(/[\u0300-\u036f]/g, "").replaceAll(/æ/g, "ae").replaceAll(/[^\x00-\x7F]/g,"");
+
+
+
+//   console.log(new_strA.replaceAll(/[^\x00-\x7F]/g,""));
+//   console.log(new_strB.replaceAll(/[^\x00-\x7F]/g,""));
+
+   if (new_strA===new_strB){
+      return true;
+   }else{
+
+      return false;
+   }
+}
 function countPages(rawStr){ return 0; }
 function cleanForHTML(dirty) { return dirty; }
 
